@@ -82,7 +82,7 @@ export const realEvents = [
     tags: [
       { key: 'type', text: 'Torneo' },
       { key: 'attendanceType', text: 'Virtual' },
-      { key: 'formatType', text: 'WSDC' },
+      { key: 'formatType', text: 'BP' },
     ],
   },
   {

@@ -3,7 +3,6 @@ import { Layout, List, Card, Row, Col } from 'antd';
 import { useTranslation } from 'react-i18next';
 import './App.less';
 import { useQuery } from './hooks/useQuery';
-import SearchBar from './components/molecular/SearchBar';
 import EventCard from './components/molecular/EventCard';
 import { listEventsRequest } from '../src/redux/actions/eventsActions';
 import { connect } from 'react-redux';
@@ -11,7 +10,7 @@ import MainBar from './components/molecular/MainBar';
 function App(props) {
   const { events, listEventsRequest: listEventsReq } = props;
   const { Header, Content } = Layout;
-  const [handlers,] = useQuery([]);
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -58,7 +57,7 @@ function App(props) {
               </Card>
             </Col>
           </Row>
-          {false && <SearchBar handlers={handlers} />}
+  
           <List
             grid={{
               gutter: 16,

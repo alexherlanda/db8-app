@@ -22,7 +22,8 @@ const codeMessage = {
 };
 
 let instance = axios.create({
-  baseURL: '/',
+  //TODO:  Update this with the server 
+  baseURL: 'https://jsonplaceholder.typicode.com/todos/1',
   validateStatus: function (status) {
     return status < 500;
   },
@@ -129,7 +130,7 @@ instance.interceptors.response.use(
           break;
         case 404:
           notification.error({
-            message: ` ${status}: No se pudo encontrar lo que buscaba :( `,
+            message: ` ${status}: No se pudo conectar con el servidor :(`,
             description: httpStatusText,
           });
           break;
@@ -168,7 +169,7 @@ instance.interceptors.response.use(
         default:
           console.log('Ocurrió un error');
           notification.error({
-            message: ` ${status}: Ocurrio un error al tratar de obtener el clima :()`,
+            message: ` ${status}: Ocurrio un error :(`,
             description: httpStatusText,
           });
           break;

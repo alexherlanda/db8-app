@@ -64,7 +64,27 @@ export const realEvents = [
       { key: 'formatType', text: 'BP' },
     ],
   },
-
+  {
+    convenorsShortName: 'Independientes',
+    convenorsCompleteName: 'Independientes',
+    country: 'CO',
+    countryCode: 'CO',
+    coverUrl: 'https://live.staticflickr.com/65535/50186531231_3c4c7e86a3_b.jpg',
+    description:
+      'Se une la competitividad de debate en formato BP con nuestra infancia proyectada en los programas televisivos que hicieron parte de ella',
+    startDate: '2020-08-28',
+    endDate: '2020-08-30',
+    infoLink: 'https://instagram.com/tdebatoon?igshid=1nwr7r86u6u05',
+    shortName: 'Debatoon',
+    name: 'Debatoon',
+    registerLink: 'https://linktr.ee/Debatoon',
+    reunionSpot: 'Discord',
+    tags: [
+      { key: 'type', text: 'Torneo' },
+      { key: 'attendanceType', text: 'Virtual' },
+      { key: 'formatType', text: 'WSDC' },
+    ],
+  },
   {
     convenorsShortName: 'Debate ESAN',
     convenorsCompleteName: 'Universidad ESAN y Debate ESAN',

@@ -12,6 +12,8 @@ DB8 Calendar is a calendar system for British Parliamentary and WSDC style debat
 DB8 is released under GNU GENERAL PUBLIC LICENSE Version 3
 
 
+## Collaborators
+
 ### How to use
 
 1. Clone the repo

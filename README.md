@@ -1,9 +1,11 @@
-# DB8 Calendar
+
+# DB8 Community
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-DB8 Calendar is a calendar system for British Parliamentary and WSDC style debate events.
+
+DB8 Community is a calendar system for British Parliamentary and WSDC style debate events.
 
 ## 💡 Features
 
@@ -19,7 +21,9 @@ DB8 is released under GNU GENERAL PUBLIC LICENSE Version 3
 
 1. Clone the repo
 2. Use 'yarn install'
-3. Use 'yarn start' to run the project. 
+4. Create and file .env at root and add the key REACT_APP_ANALYTICS_ID
+3. Use 'yarn start' to run the project.
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

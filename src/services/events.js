@@ -1,5 +1,5 @@
 import request from './requests';
-const path = 'api/events'
+const path = 'events'
 
 export async function listEvents(params) {
   return request(path, {

@@ -8,8 +8,7 @@ function* listEventsRequestAsyncOrchestrator(action) {
   try {
     const response = yield call(listEvents, payload);
     if (typeof response !== 'undefined' && response.status === 200) {
-      //TODO: Save the correct key 
-      yield put(listEventsSuccess(response.data))
+      yield put(listEventsSuccess(response.data.results))
     } else {
      yield put(listEventsFail())
     }

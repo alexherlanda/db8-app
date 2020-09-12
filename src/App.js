@@ -24,7 +24,7 @@ function App() {
           <MainBar />
         </Header>
         <Layout>
-          <Content style={{ margin: 20 }}>
+          <Content style={{ margin: 20}}>
             <Switch>
               <Route path="/events/post">
                 <PostEvent />

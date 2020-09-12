@@ -1,0 +1,25 @@
+.postEventFormContainer {
+    background: white;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.headerForm {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.postEventFormRow {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.form-button-section-container {
+    display: flex !important; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    background-color: red;
+}

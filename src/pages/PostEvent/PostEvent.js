@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "antd";
-import { Step1, Step2, Step3 } from "../../forms/postEventForms";
+import { Step1, Step2, Step3, Step4 } from "../../forms/postEventForms";
 import Steps from "../../components/atomic/Steps";
 import "./styles.css";
 
@@ -15,15 +15,32 @@ function PostEvent() {
   const [isRegisterComplete, setIsRegisterComplete] = useState(false);
 
   useEffect(() => {
+    // Merges captured data into one object
     const merge = {
       ...capturedData.step1,
       ...capturedData.step2,
       ...capturedData.step3,
     };
-   if(isRegisterComplete) {
-     console.log("merge", merge)
-     //TODO: Send request
-   }
+    if (isRegisterComplete) {
+      //Adds and groups keys for request as defined in model an API
+      const newEvent = {
+        ...merge,
+        countryCode: merge.country,
+        tags: [
+          { key: "type", value: merge.type },
+          { key: "attendanceType", value: merge.attendanceType },
+          { key: "formatType", text: merge.formatType },
+        ],
+      };
+
+      //Removes keys that are not required by the API a
+      delete newEvent["attendanceType"];
+      delete newEvent["formatType"];
+      delete newEvent["type"];
+
+      //TODO: Send request
+      console.log("newEvent", newEvent);
+    }
   }, [capturedData, isRegisterComplete]);
 
   const saveDataCaptured = (step, data) => {
@@ -52,7 +69,12 @@ function PostEvent() {
 
   const onFinishStep3 = (formValues) => {
     saveDataCaptured(3, formValues);
-    setIsRegisterComplete(true)
+    setNexStep();
+  };
+
+  const onFinishStep4 = (formValues) => {
+    saveDataCaptured(4, formValues);
+    setIsRegisterComplete(true);
   };
 
   const getFormByStep = (step) => {
@@ -88,6 +110,16 @@ function PostEvent() {
         );
         break;
 
+      case 4:
+        Form = (
+          <Step4
+            title="Personaliza tu evento"
+            description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
+            onFinishSuccess={onFinishStep4}
+          />
+        );
+        break; 
+
       default:
         break;
     }
@@ -97,7 +129,7 @@ function PostEvent() {
   return (
     <>
       <Row className="postEventRow" justify="center">
-        <Steps activeStep={activeStep} />
+        <Steps numberOfSteps={5} activeStep={activeStep} />
       </Row>
       <Row gutter={[16, 16]}>
         <Col {...layout}>{getFormByStep(activeStep)}</Col>

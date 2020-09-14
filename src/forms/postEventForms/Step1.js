@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Radio, Col } from "antd";
 import "./styles.css";
 import StepForm from "../../components/atomic/StepForm";
+import CountriesCatalog from "../../components/atomic/CountriesCatalog";
 
 function EventsPostForm(props) {
   const { ...other } = props;
@@ -17,9 +18,9 @@ function EventsPostForm(props) {
   ];
 
   const formatTypeOptions = [
-    { label: "BP", value: 0 },
-    { label: "WUSDC", value: 1 },
-    { label: "Karl Popper", value: 2 },
+    { label: "BP", value: "BP" },
+    { label: "WUSDC", value: "WSDC" },
+    { label: "Karl Popper", value: "Karl Popper" },
   ];
 
   const languageOptions = [
@@ -60,6 +61,12 @@ function EventsPostForm(props) {
       <Col span={24}>
         <Form.Item label="Idioma principal del evento" name="language">
           <Radio.Group options={languageOptions} {...optionGrupCommonProps} />
+        </Form.Item>
+      </Col>
+
+      <Col span={24}>
+        <Form.Item label="País" name="country">
+          <CountriesCatalog />
         </Form.Item>
       </Col>
     </StepForm>

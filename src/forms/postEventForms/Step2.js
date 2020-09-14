@@ -54,6 +54,15 @@ function EventsPostForm(props) {
       </Col>
 
       <Col span={24}>
+        <Form.Item
+          label="Descripción del evento"
+          name="description"
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+
+      <Col span={24}>
         <Form.Item label="País" name="country">
           <CountriesCatalog />
         </Form.Item>

@@ -8,7 +8,7 @@ function Step3(props) {
   const {...other} = props
   return (
     <StepForm {...other}>
-      <Form.List name="users">
+      <Form.List name="linkCollection">
         {(fields, { add, remove }) => {
           return (
             <div>

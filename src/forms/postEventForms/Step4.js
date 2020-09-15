@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, DatePicker, Col } from "antd";
+import { Form, Input,  Col } from "antd";
 import "./styles.css";
 import StepForm from "../../components/atomic/StepForm";
 

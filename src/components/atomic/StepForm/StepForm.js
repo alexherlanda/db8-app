@@ -3,10 +3,20 @@ import { Form, Col, Row, Typography, Button } from "antd";
 import "./styles.css";
 
 function StepForm(props) {
-  const { title, description, onFinishSuccess, children, ...other } = props;
+  const {
+    title,
+    description,
+    onFinishSuccess,
+    children,
+    onBack,
+    step,
+    ...other
+  } = props;
   const { Title } = Typography;
 
-  const buttonLayout = { xs: 24, sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 };
+  const [form] = Form.useForm();
+
+  const buttonLayout = { xs: 12, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 };
 
   /* Hanldes  when the user enters all the inputs correctly */
   const handleOnFinishSuccess = (values) => {
@@ -20,28 +30,56 @@ function StepForm(props) {
     console.warn("Form validation failed:", errorInfo);
   };
 
+  const handleOnBack = () => {
+    const values = form.getFieldsValue();
+    if (onBack) {
+      onBack(values, step);
+    } else {
+      console.error(
+        "The following user inputs will be lost as you did not pass onBack. Did you forgot to pass onBack prop ? ",
+        values
+      );
+      form.resetFields();
+    }
+  };
+
   return (
-    <div className="postEventFormContainer">
+    <div>
       <Row>
         <Col className="headerForm postEventFormRow" span={24}>
           <Title level={4}> {title} </Title>
           <p> {description} </p>
         </Col>
       </Row>
+
       <Form
+        form={form}
         layout="vertical"
         onFinish={handleOnFinishSuccess}
         onFinishFailed={handleOnFinishFail}
         {...other}
       >
-        <Row>{children}</Row>
-        <Col {...buttonLayout}>
-          <Form.Item>
-            <Button htmlType="submit" block size="large" type="primary">
-              Siguiente
-            </Button>
-          </Form.Item>
-        </Col>
+        <Row justify="center">{children}</Row>
+
+        <Row justify="center" gutter={[8, 8]}>
+          {onBack && (
+            <Col {...buttonLayout}>
+              <Form.Item>
+                <Button onClick={handleOnBack} block size="large">
+                  Regresar
+                </Button>
+              </Form.Item>
+            </Col>
+          )}
+
+          <Col {...buttonLayout}>
+            <Form.Item>
+              <Button htmlType="submit" block size="large" type="primary">
+                Siguiente
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
       </Form>
     </div>
   );

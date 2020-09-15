@@ -1,19 +1,20 @@
 import React from "react";
 import { Select } from "antd";
 
-function CountriesCatalog() {
+function CountriesCatalog(props) {
+  const { ...other } = props;
   const { Option } = Select;
 
   const dataSource = [
-      { value: "MX", label: "México" },
-      { value: "PE", label: "Perú" },
-      { value: "CO", label: "Colombia" },
-      { value: "ES", label: "España" },
-      { value: "US", label: "Estados Unidos de América" },
-      { value: "EC", label: "Ecuador" },
-      { value: "CL", label: "Panamá" },
-      { value: "PA", label: "Venezuela" },
-    ];
+    { value: "MX", label: "México" },
+    { value: "PE", label: "Perú" },
+    { value: "CO", label: "Colombia" },
+    { value: "ES", label: "España" },
+    { value: "US", label: "Estados Unidos de América" },
+    { value: "EC", label: "Ecuador" },
+    { value: "CL", label: "Panamá" },
+    { value: "PA", label: "Venezuela" },
+  ];
 
   const renderOptions = (options) => {
     return options.map((option) => {
@@ -25,9 +26,7 @@ function CountriesCatalog() {
     });
   };
 
-  return (
-      <Select>{renderOptions(dataSource)}</Select>
-  );
+  return <Select {...other}>{renderOptions(dataSource)}</Select>;
 }
 
 export default CountriesCatalog;

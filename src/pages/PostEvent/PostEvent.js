@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Tabs } from "antd";
 import { Step1, Step2, Step3, Step4 } from "../../forms/postEventForms";
 import Steps from "../../components/atomic/Steps";
 import "./styles.css";
+import { EditOutlined, EyeOutlined } from "@ant-design/icons";
+import EventCard from "../../components/molecular/EventCard";
 
+import { event } from "../../models/events";
 function PostEvent() {
   const layout = { xs: 24, sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 };
+
   const [activeStep, setActiveStep] = useState(1);
   const [capturedData, setCapturedData] = useState({
     step1: {},
@@ -52,10 +56,10 @@ function PostEvent() {
     setActiveStep(newStep);
   };
 
-  /* const setPrevStep = () => {
+  const goTOPreviousStep = () => {
     const newStep = activeStep - 1;
     setActiveStep(newStep);
-  } */
+  };
 
   const onFinishStep1 = (formValues) => {
     saveDataCaptured(1, formValues);
@@ -77,6 +81,18 @@ function PostEvent() {
     setIsRegisterComplete(true);
   };
 
+  const handleOnBack = (formValues, step) => {
+    saveDataCaptured(step, formValues);
+    if (step !== 1) {
+      console.log("PREV");
+      goTOPreviousStep();
+    }
+  };
+
+  const formCommonProps = {
+    onBack: handleOnBack,
+  };
+
   const getFormByStep = (step) => {
     let Form;
     switch (step) {
@@ -86,6 +102,8 @@ function PostEvent() {
             title="Clasificación de tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={onFinishStep1}
+            step={1}
+            initialValues={capturedData.step1}
           />
         );
         break;
@@ -96,6 +114,9 @@ function PostEvent() {
             title="Detalles de tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={onFinishStep2}
+            step={2}
+            initialValues={capturedData.step2}
+            {...formCommonProps}
           />
         );
         break;
@@ -106,6 +127,9 @@ function PostEvent() {
             title="Enlaces de tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={onFinishStep3}
+            step={3}
+            initialValues={capturedData.step3}
+            {...formCommonProps}
           />
         );
         break;
@@ -116,9 +140,11 @@ function PostEvent() {
             title="Personaliza tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={onFinishStep4}
+            step={4}
+            {...formCommonProps}
           />
         );
-        break; 
+        break;
 
       default:
         break;
@@ -126,13 +152,44 @@ function PostEvent() {
     return Form;
   };
 
+  const { TabPane } = Tabs;
+
   return (
     <>
+      <Col span={24}></Col>
       <Row className="postEventRow" justify="center">
-        <Steps numberOfSteps={5} activeStep={activeStep} />
+        <Steps numberOfSteps={4} activeStep={activeStep} />
       </Row>
-      <Row gutter={[16, 16]}>
-        <Col {...layout}>{getFormByStep(activeStep)}</Col>
+
+      <Row justify="center" gutter={[16, 16]}>
+        <Col {...layout}>
+          <Tabs centered size="large" animated defaultActiveKey="1">
+            <TabPane
+              tab={
+                <span>
+                  <EditOutlined />
+                  Datos
+                </span>
+              }
+              key="1"
+            >
+              {getFormByStep(activeStep)}
+            </TabPane>
+            <TabPane
+              tab={
+                <span>
+                  <EyeOutlined />
+                  Vista Previa
+                </span>
+              }
+              key="2"
+            >
+              <Col span={12}>
+                <EventCard event={event} />
+              </Col>
+            </TabPane>
+          </Tabs>
+        </Col>
       </Row>
     </>
   );

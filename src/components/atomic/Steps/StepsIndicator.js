@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./styles.css";
 
 function Steps(props) {
-  const { numberOfSteps,  styleConfig, activeStep } = props;
+  const { numberOfSteps, styleConfig, activeStep } = props;
 
   const getStepStyle = (step) => {
     let style;
@@ -14,13 +14,13 @@ function Steps(props) {
         border: `1px solid ${styleConfig.activeColor}`,
       };
     } else if (step === activeStep) {
-      style = { background: "green" };
+      style = { background: "green", width: "48px", height: "48px" };
     } else {
       style = {
         color: "grey",
         background: "white",
         border: `1px solid lightgrey`,
-        opacity: '70%'
+        opacity: "70%",
       };
     }
     return style;

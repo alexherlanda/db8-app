@@ -2,7 +2,6 @@ import React from "react";
 import { Form, Input, DatePicker, Col } from "antd";
 import "./styles.css";
 import StepForm from "../../components/atomic/StepForm";
-import CountriesCatalog from "../../components/atomic/CountriesCatalog";
 
 function EventsPostForm(props) {
   const { ...other } = props;
@@ -62,11 +61,7 @@ function EventsPostForm(props) {
         </Form.Item>
       </Col>
 
-      <Col span={24}>
-        <Form.Item label="País" name="country">
-          <CountriesCatalog />
-        </Form.Item>
-      </Col>
+     
     </StepForm>
   );
 }

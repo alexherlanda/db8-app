@@ -4,9 +4,8 @@ import { Step1, Step2, Step3, Step4 } from "../../forms/postEventForms";
 import Steps from "../../components/atomic/Steps";
 import "./styles.css";
 
-
 function PostEvent() {
-  const layout = { xs: 24, sm: 24, md: 12, lg: 12, xl: 12, xxl: 12 };
+  const layout = { xs: 24, sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 };
 
   const [activeStep, setActiveStep] = useState(1);
   const [capturedData, setCapturedData] = useState({
@@ -26,7 +25,6 @@ function PostEvent() {
       ...capturedData.step4,
     };
     if (true) {
-      console.log("createEvent");
       //Adds and groups keys for request as defined in model an API
       const newEvent = {
         ...merge,
@@ -42,8 +40,8 @@ function PostEvent() {
       delete newEvent["formatType"];
       delete newEvent["type"];
       setEvent(newEvent);
+      console.log("event", newEvent);
       //TODO: Send request
-      console.log("newEvent", newEvent);
     }
   }, [capturedData, isRegisterComplete]);
 
@@ -69,7 +67,6 @@ function PostEvent() {
   const handleOnBack = (formValues, step) => {
     saveDataCaptured(step, formValues);
     if (step !== 1) {
-      console.log("PREV");
       goToPreviousStep();
     }
   };
@@ -93,6 +90,10 @@ function PostEvent() {
     onBack: handleOnBack,
   };
 
+  const previewData = {
+    event: event,
+  };
+
   const getFormByStep = (step) => {
     let Form;
     switch (step) {
@@ -104,6 +105,8 @@ function PostEvent() {
             onFinishSuccess={handleOnNext}
             step={1}
             initialValues={capturedData.step1}
+            onValuesChange={hadleCustomization}
+            {...previewData}
           />
         );
         break;
@@ -115,8 +118,10 @@ function PostEvent() {
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={handleOnNext}
             step={2}
+            onValuesChange={hadleCustomization}
             initialValues={capturedData.step2}
             {...formCommonProps}
+            {...previewData}
           />
         );
         break;
@@ -128,8 +133,10 @@ function PostEvent() {
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
             onFinishSuccess={handleOnStep3Finish}
             step={3}
+            onValuesChange={hadleCustomization}
             initialValues={capturedData.step3}
             {...formCommonProps}
+            {...previewData}
           />
         );
         break;
@@ -142,10 +149,9 @@ function PostEvent() {
             onFinishSuccess={handleOnNext}
             step={4}
             event={event}
-            onValuesChange={(changedFields) =>
-              hadleCustomization(4, changedFields)
-            }
+            onValuesChange={hadleCustomization}
             {...formCommonProps}
+            {...previewData}
           />
         );
         break;

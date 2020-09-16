@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Col, Row, Typography, Button } from "antd";
 import "./styles.css";
+import EventCard from "../../molecular/EventCard";
 
 function StepForm(props) {
   const {
@@ -10,6 +11,8 @@ function StepForm(props) {
     children,
     onBack,
     step,
+    onValuesChange,
+    previewData,
     ...other
   } = props;
   const { Title } = Typography;
@@ -43,6 +46,11 @@ function StepForm(props) {
     }
   };
 
+  const handleOnChange = (changedFields, allFields) => {
+    console.log("allfields", allFields);
+    if (onValuesChange) onValuesChange(step, allFields, changedFields);
+  };
+
   return (
     <div>
       <Row>
@@ -57,9 +65,17 @@ function StepForm(props) {
         layout="vertical"
         onFinish={handleOnFinishSuccess}
         onFinishFailed={handleOnFinishFail}
+        onValuesChange={(changedFields, allFields) =>
+          handleOnChange(changedFields, allFields)
+        }
         {...other}
       >
-        <Row justify="center">{children}</Row>
+        <Row justify="center">
+          <Col span={12}>{children}</Col>
+          <Col span={12}>
+            <EventCard event={previewData ? previewData : undefined} />
+          </Col>
+        </Row>
 
         <Row justify="center" gutter={[8, 8]}>
           {onBack && (

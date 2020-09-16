@@ -5,7 +5,7 @@ import StepForm from "../../components/atomic/StepForm";
 import CountriesCatalog from "../../components/atomic/CountriesCatalog";
 
 function EventsPostForm(props) {
-  const { ...other } = props;
+  const { event, ...other } = props;
 
   const attendanceTypeOptions = [
     { label: "Presencial", value: 0 },
@@ -36,7 +36,7 @@ function EventsPostForm(props) {
   };
 
   return (
-    <StepForm {...other}>
+    <StepForm previewData={event} {...other}>
       <Col span={24}>
         <Form.Item label="Tipo de evento" name="type">
           <Radio.Group options={eventTypeOptions} {...optionGrupCommonProps} />

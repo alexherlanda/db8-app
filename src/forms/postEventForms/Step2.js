@@ -4,12 +4,10 @@ import "./styles.css";
 import StepForm from "../../components/atomic/StepForm";
 
 function EventsPostForm(props) {
-  const { ...other } = props;
+  const { event, ...other } = props;
 
   return (
-    <StepForm
-      {...other}
-    >
+    <StepForm previewData={event} {...other}>
       <Col span={24}>
         <Form.Item label="Nombre del evento" name="name">
           <Input />
@@ -53,15 +51,10 @@ function EventsPostForm(props) {
       </Col>
 
       <Col span={24}>
-        <Form.Item
-          label="Descripción del evento"
-          name="description"
-        >
+        <Form.Item label="Descripción del evento" name="description">
           <Input />
         </Form.Item>
       </Col>
-
-     
     </StepForm>
   );
 }

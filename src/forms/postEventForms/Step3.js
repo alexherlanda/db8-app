@@ -5,9 +5,9 @@ import StepForm from "../../components/atomic/StepForm";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
 function Step3(props) {
-  const {...other} = props
+  const { event, ...other } = props;
   return (
-    <StepForm {...other}>
+    <StepForm previewData={event} {...other}>
       <Form.List name="linkCollection">
         {(fields, { add, remove }) => {
           return (

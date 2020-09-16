@@ -21,7 +21,7 @@ function StepForm(props) {
   /* Hanldes  when the user enters all the inputs correctly */
   const handleOnFinishSuccess = (values) => {
     if (onFinishSuccess) {
-      onFinishSuccess(values);
+      onFinishSuccess(values, step);
     }
   };
 
@@ -46,7 +46,7 @@ function StepForm(props) {
   return (
     <div>
       <Row>
-        <Col className="headerForm postEventFormRow" span={24}>
+        <Col span={24}>
           <Title level={4}> {title} </Title>
           <p> {description} </p>
         </Col>

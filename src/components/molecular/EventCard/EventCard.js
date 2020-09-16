@@ -24,7 +24,9 @@ function EventCard(props) {
       style={{
         borderRadius: "15px",
         minHeight: 400,
-        backgroundImage: `url('${event.coverUrl}')`,
+        backgroundImage: `url('${
+          event && event.coverUrl ? event.coverUrl : undefined
+        }')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -37,7 +39,7 @@ function EventCard(props) {
           alignItems: "bottom",
         }}
       >
-        <Tags tags={event.tags} />
+        <Tags tags={event && event.tags ? event.tags : undefined} />
       </Row>
       <Row
         style={{
@@ -57,7 +59,7 @@ function EventCard(props) {
                 <div style={{ display: "flex", alignItems: "baseline" }}>
                   <Modal
                     maskStyle={{ background: "rgba(0, 0, 0, 0.95)" }}
-                    title={event.name}
+                    title={event && event.name ? event.name : ""}
                     visible={showMoreInfo}
                     destroyOnClose
                     onCancel={() => setShowMoreInfo(false)}
@@ -71,7 +73,11 @@ function EventCard(props) {
                     }
                   >
                     <p>
-                      {`${event.description}. Esta organizado por ${event.convenorsCompleteName}`}
+                      {`${event && event.description}. Esta organizado por ${
+                        event && event.convenorsCompleteName
+                          ? event.convenorsCompleteName
+                          : ""
+                      }`}
                     </p>
                   </Modal>
                   <Modal
@@ -94,7 +100,7 @@ function EventCard(props) {
                       overflowY: "hidden",
                     }}
                   >
-                    {event.shortName}
+                    {event && event.shortName ? event.shortName : ''}
                   </Title>
                   <div
                     style={{ color: "grey", fontSize: "11px" }}
@@ -109,25 +115,31 @@ function EventCard(props) {
             <Row>
               <Col xs={7} sm={7} md={6} lg={6} xl={6} xxl={4}>
                 <CountryBadge
-                  countryLabel={event.country}
-                  countryCode={event.countryCode}
+                  countryLabel={event && event.country ? event.country : ""}
+                  countryCode={
+                    event && event.countryCode ? event.countryCode : ""
+                  }
                 />
               </Col>
 
               <Col style={{ marginTop: 5 }} span={24}>
-                {`${t("card-host")} ${event.convenorsShortName}`}
+                {`${t("card-host")} ${
+                  event && event.convenorsShortName
+                    ? event.convenorsShortName
+                    : ""
+                }`}
               </Col>
 
               <Col style={{ marginTop: 5 }} span={24}>
-                {event.reunionSpot}
+                {event && event.reunionSpot ? event.reunionSpot : ""}
               </Col>
             </Row>
 
             <Row style={{ display: "flex", justifyContent: "center" }}>
               <DateRange
                 locale={t("key-code")}
-                startDate={event.startDate}
-                endDate={event.endDate}
+                startDate={event && event.startDate ? event.startDate : ""}
+                endDate={event && event.endDate ? event.endDate : ""}
               />
             </Row>
             <Row
@@ -141,9 +153,9 @@ function EventCard(props) {
             >
               <Col xs={12} sm={12} md={12} lg={10} xl={8} xxl={8}>
                 <Button
-                  disabled={event.infoLink ? false : true}
+                  //disabled={event.infoLink ? false : true}
                   block
-                  href={event.infoLink}
+                  href={event && event.infoLink ? event.infoLink : undefined}
                   target="_blank"
                   style={{ borderRadius: "12px" }}
                 >

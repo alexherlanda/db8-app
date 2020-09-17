@@ -5,15 +5,13 @@ import Steps from "../../components/atomic/Steps";
 import "./styles.css";
 
 function PostEvent() {
-  const layout = { xs: 24, sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 };
-
   const [activeStep, setActiveStep] = useState(1);
   const [capturedData, setCapturedData] = useState({
     step1: {},
     step2: {},
     step3: {},
+    step4: {},
   });
-  const [isRegisterComplete, setIsRegisterComplete] = useState(false);
   const [event, setEvent] = useState({});
 
   useEffect(() => {
@@ -24,27 +22,30 @@ function PostEvent() {
       ...capturedData.step3,
       ...capturedData.step4,
     };
-    if (true) {
-      //Adds and groups keys for request as defined in model an API
-      const newEvent = {
-        ...merge,
-        countryCode: merge.country,
-        tags: [
-          { key: "type", value: merge.type },
-          { key: "attendanceType", value: merge.attendanceType },
-          { key: "formatType", text: merge.formatType },
-        ],
-      };
-      //Removes keys that are not required by the API a
-      delete newEvent["attendanceType"];
-      delete newEvent["formatType"];
-      delete newEvent["type"];
-      setEvent(newEvent);
-      console.log("event", newEvent);
-      //TODO: Send request
-    }
-  }, [capturedData, isRegisterComplete]);
 
+    //Adds and groups keys for request as defined in model an API
+    const newEvent = {
+      ...merge,
+      countryCode: merge.country,
+      tags: [
+        { key: "type", value: merge.type },
+        { key: "attendanceType", value: merge.attendanceType },
+        { key: "formatType", text: merge.formatType },
+      ],
+    };
+
+    //Removes keys that are not required by the API a
+    delete newEvent["attendanceType"];
+    delete newEvent["formatType"];
+    delete newEvent["type"];
+
+    //Saves the event for access
+    setEvent(newEvent);
+    console.log("event", newEvent);
+    //TODO: Send request
+  }, [capturedData]);
+
+  //This function saves the captured data of the user to the state
   const saveDataCaptured = (step, data) => {
     setCapturedData({ ...capturedData, [`step${step}`]: data });
   };
@@ -77,13 +78,11 @@ function PostEvent() {
 
   const handleOnStep3Finish = (step, formValues) => {
     saveDataCaptured(step, formValues);
-    setIsRegisterComplete(true);
     goToNextStep();
   };
 
   const hadleCustomization = (step, formValues) => {
     saveDataCaptured(step, formValues);
-    setIsRegisterComplete(true);
   };
 
   const formCommonProps = {
@@ -146,10 +145,10 @@ function PostEvent() {
           <Step4
             title="Personaliza tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
-            //onFinishSuccess={handleOnNext}
             step={4}
             event={event}
             onValuesChange={hadleCustomization}
+            initialValues={capturedData.step4}
             {...formCommonProps}
             {...previewData}
           />

@@ -23,6 +23,7 @@ function StepForm(props) {
 
   /* Hanldes  when the user enters all the inputs correctly */
   const handleOnFinishSuccess = (values) => {
+    console.log("values", values);
     if (onFinishSuccess) {
       onFinishSuccess(values, step);
     }
@@ -51,53 +52,92 @@ function StepForm(props) {
     if (onValuesChange) onValuesChange(step, allFields, changedFields);
   };
 
+  const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
+  const eventLayouts = { xs: 24, sm: 20, md: 18, lg: 18, xl: 18, xxl: 14 };
   return (
-    <div>
-      <Row>
-        <Col span={24}>
-          <Title level={4}> {title} </Title>
-          <p> {description} </p>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={handleOnFinishSuccess}
+      onFinishFailed={handleOnFinishFail}
+      onValuesChange={(changedFields, allFields) =>
+        handleOnChange(changedFields, allFields)
+      }
+      {...other}
+    >
+      <Row gutter={16} justify="center">
+        <Col
+          {...middleLayouts}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "15px",
+          }}
+        >
+          <div
+            style={{
+              minHeight: "600px",
+              width: "98%",
+              padding: "15px",
+              background: "white",
+            }}
+          >
+            <Title level={3}> {title} </Title>
+            <p> {description} </p>
+            {children}
+
+            <Row justify="center" gutter={8}>
+              <Col span={10}>
+                <Form.Item>
+                  <Button onClick={handleOnBack} block size="large">
+                    Regresar
+                  </Button>
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <Form.Item>
+                  <Button htmlType="submit" block size="large" type="primary">
+                    Siguiente
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+        <Col
+          {...middleLayouts}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "15px",
+          }}
+        >
+          <div
+            style={{
+              minHeight: "600px",
+              width: "98%",
+              padding: "15px",
+              background: "white",
+            }}
+          >
+            <Title level={4}> Vista Previa </Title>
+            <p> Esta quedando fantastico </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                background: "lightgrey",
+                padding: "15px",
+              }}
+            >
+              <Col {...eventLayouts}>
+                <EventCard event={previewData} style={{ width: "100%" }} />
+              </Col>
+            </div>
+          </div>
         </Col>
       </Row>
-
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleOnFinishSuccess}
-        onFinishFailed={handleOnFinishFail}
-        onValuesChange={(changedFields, allFields) =>
-          handleOnChange(changedFields, allFields)
-        }
-        {...other}
-      >
-        <Row justify="center">
-          <Col span={12}>{children}</Col>
-          <Col span={12}>
-            <EventCard event={previewData ? previewData : undefined} />
-          </Col>
-        </Row>
-
-        <Row justify="center" gutter={[8, 8]}>
-          {onBack && (
-            <Col {...buttonLayout}>
-              <Form.Item>
-                <Button onClick={handleOnBack} block size="large">
-                  Regresar
-                </Button>
-              </Form.Item>
-            </Col>
-          )}
-
-          <Col {...buttonLayout}>
-            <Form.Item>
-              <Button htmlType="submit" block size="large" type="primary">
-                Siguiente
-              </Button>
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    </div>
+    </Form>
   );
 }
 

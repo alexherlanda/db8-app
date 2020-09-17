@@ -9,7 +9,7 @@ import LinkCollection from "../../atomic/LinkCollection";
 const { Title } = Typography;
 
 function EventCard(props) {
-  const { event } = props;
+  const { event, style } = props;
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [showLinkCollection, setShowLinkCollection] = useState(false);
   const { t } = useTranslation();
@@ -29,6 +29,7 @@ function EventCard(props) {
         }')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        ...style
       }}
       bodyStyle={{ padding: "10px" }}
     >
@@ -138,8 +139,8 @@ function EventCard(props) {
             <Row style={{ display: "flex", justifyContent: "center" }}>
               <DateRange
                 locale={t("key-code")}
-                startDate={event && event.startDate ? event.startDate : ""}
-                endDate={event && event.endDate ? event.endDate : ""}
+                startDate={event && event.startDate ? event.startDate : "01-01-21"}
+                endDate={event && event.endDate ? event.endDate : "01-02-21"}
               />
             </Row>
             <Row

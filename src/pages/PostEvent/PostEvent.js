@@ -146,7 +146,7 @@ function PostEvent() {
           <Step4
             title="Personaliza tu evento"
             description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
-            onFinishSuccess={handleOnNext}
+            //onFinishSuccess={handleOnNext}
             step={4}
             event={event}
             onValuesChange={hadleCustomization}
@@ -173,9 +173,7 @@ function PostEvent() {
         />
       </Row>
 
-      <Row justify="center" gutter={[16, 16]}>
-        <Col {...layout}>{getFormByStep(activeStep)}</Col>
-      </Row>
+      {getFormByStep(activeStep)}
     </>
   );
 }

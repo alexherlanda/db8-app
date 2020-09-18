@@ -54,6 +54,8 @@ function StepForm(props) {
 
   const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
   const eventLayouts = { xs: 24, sm: 20, md: 18, lg: 18, xl: 18, xxl: 14 };
+
+  //TODO: Refactor to get a
   return (
     <Form
       form={form}
@@ -130,9 +132,7 @@ function StepForm(props) {
                 padding: "15px",
               }}
             >
-              <Col {...eventLayouts}>
-                <EventCard event={previewData} style={{ width: "100%" }} />
-              </Col>
+              <EventCard event={previewData} style={{ width: "100%" }} />
             </div>
           </div>
         </Col>

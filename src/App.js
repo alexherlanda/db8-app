@@ -6,6 +6,8 @@ import PostEvent from "./pages/PostEvent";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactGA from "react-ga";
 import "./App.less";
+import { Element } from "react-scroll";
+
 
 function App() {
   const { Header, Content } = Layout;
@@ -20,9 +22,12 @@ function App() {
   return (
     <Router>
       <Layout>
+        <Element name="header">
         <Header style={{ padding: "0 15px" }}>
           <MainBar />
         </Header>
+        </Element>
+        
         <Layout>
           <Content style={{ margin: 20}}>
             <Switch>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
+import { Row } from "antd";
 import { Step1, Step2, Step3, Step4 } from "../../forms/postEventForms";
 import Steps from "../../components/atomic/Steps";
+import { scroller } from "react-scroll";
 import "./styles.css";
 
 function PostEvent() {
@@ -53,11 +54,13 @@ function PostEvent() {
   const goToNextStep = () => {
     const newStep = activeStep + 1;
     setActiveStep(newStep);
+    scroller.scrollTo("header");
   };
 
   const goToPreviousStep = () => {
     const newStep = activeStep - 1;
     setActiveStep(newStep);
+    scroller.scrollTo("header");
   };
 
   const handleOnNext = (formValues, step) => {
@@ -163,7 +166,6 @@ function PostEvent() {
 
   return (
     <>
-      <Col span={12}></Col>
       <Row className="postEventRow" justify="center">
         <Steps
           numberOfSteps={4}

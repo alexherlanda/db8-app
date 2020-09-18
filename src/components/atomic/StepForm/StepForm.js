@@ -19,8 +19,6 @@ function StepForm(props) {
 
   const [form] = Form.useForm();
 
-  const buttonLayout = { xs: 12, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 };
-
   /* Hanldes  when the user enters all the inputs correctly */
   const handleOnFinishSuccess = (values) => {
     console.log("values", values);
@@ -53,9 +51,8 @@ function StepForm(props) {
   };
 
   const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
-  const eventLayouts = { xs: 24, sm: 20, md: 18, lg: 18, xl: 18, xxl: 14 };
 
-  //TODO: Refactor to get a
+  //TODO: Refactor to get a preview element as a prop
   return (
     <Form
       form={form}
@@ -118,18 +115,20 @@ function StepForm(props) {
             style={{
               minHeight: "600px",
               width: "98%",
-              padding: "15px",
               background: "white",
             }}
           >
-            <Title level={4}> Vista Previa </Title>
-            <p> Esta quedando fantastico </p>
+            <div style={{ padding: "15px" }}>
+              <Title level={4}> Vista Previa </Title>
+              <p> Esta quedando fantastico </p>
+            </div>
+
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 background: "lightgrey",
-                padding: "15px",
+                padding: 2,
               }}
             >
               <EventCard event={previewData} style={{ width: "100%" }} />

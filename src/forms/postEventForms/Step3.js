@@ -1,13 +1,20 @@
 import React from "react";
-import { Form, Input, Space, Button } from "antd";
+import { Form, Input, Space, Button, Col } from "antd";
 import "./styles.css";
 import StepForm from "../../components/atomic/StepForm";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
 function Step3(props) {
   const { event, ...other } = props;
+
   return (
     <StepForm previewData={event} {...other}>
+      <Col span={24}>
+        <Form.Item label="URL de información" name="convenorsCompleteName">
+          <Input />
+        </Form.Item>
+      </Col>
+
       <Form.List name="linkCollection">
         {(fields, { add, remove }) => {
           return (
@@ -15,7 +22,7 @@ function Step3(props) {
               {fields.map((field) => (
                 <Space
                   key={field.key}
-                  style={{ display: "flex", marginBottom: 8 }}
+                  //style={{ display: "flex", marginBottom: 8 }}
                   align="start"
                 >
                   <MinusCircleOutlined
@@ -29,7 +36,7 @@ function Step3(props) {
                     fieldKey={[field.fieldKey, "first"]}
                     rules={[{ required: true, message: "Missing first name" }]}
                   >
-                    <Input placeholder="First Name" />
+                    <Input placeholder="Titulo del enlance" />
                   </Form.Item>
                   <Form.Item
                     {...field}
@@ -37,7 +44,7 @@ function Step3(props) {
                     fieldKey={[field.fieldKey, "last"]}
                     rules={[{ required: true, message: "Missing last name" }]}
                   >
-                    <Input placeholder="Last Name" />
+                    <Input placeholder="URL" />
                   </Form.Item>
                 </Space>
               ))}
@@ -51,7 +58,7 @@ function Step3(props) {
                     }}
                     block
                   >
-                    Agregar un link <PlusOutlined />
+                    Agregar otro enlace <PlusOutlined />
                   </Button>
                 )}
               </Form.Item>

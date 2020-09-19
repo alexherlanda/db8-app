@@ -26,9 +26,9 @@ LinkCollection.propTypes = {
 
 LinkCollection.defaultProps = {
   linkCollection: [
-    { id: 1, label: "Registro Debatientes", link: "aaa" },
-    { id: 1, label: "Registro Jueces", link: "aaa" },
-    { id: 1, label: "Convocatoria", link: "aaa" },
+    { label: "Registro Debatientes", link: "aaa" },
+    { label: "Registro Jueces", link: "aaa" },
+    { label: "Convocatoria", link: "aaa" },
   ],
 };
 

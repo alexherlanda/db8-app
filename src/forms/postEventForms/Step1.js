@@ -36,7 +36,7 @@ function EventsPostForm(props) {
   };
 
   return (
-    <StepForm previewData={event} {...other}>
+    <StepForm  previewData={event} {...other}>
       <Col span={24}>
         <Form.Item label="Tipo de evento" name="type">
           <Radio.Group options={eventTypeOptions} {...optionGrupCommonProps} />

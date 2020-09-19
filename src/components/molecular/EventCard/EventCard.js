@@ -32,7 +32,6 @@ function EventCard(props) {
     const x = getCoverStyle(objectEvent, "positionX", 0);
     const y = getCoverStyle(objectEvent, "positionY", 0);
     const position = `${x}${unit} ${y}${unit}`;
-    console.log("pos", position);
     return position;
   };
   return (

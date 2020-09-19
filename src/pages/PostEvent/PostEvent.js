@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Row } from "antd";
-import { Step1, Step2, Step3, Step4 } from "../../forms/postEventForms";
+import {
+  Step1,
+  Step2,
+  Step3,
+  Step4,
+  PreviewCard,
+} from "../../forms/postEventForms";
 import Steps from "../../components/atomic/Steps";
 import { scroller } from "react-scroll";
 import "./styles.css";
@@ -10,7 +16,7 @@ function PostEvent() {
   const [capturedData, setCapturedData] = useState({
     step1: {},
     step2: {},
-    step3: {},
+    step3: { linkCollection: [] },
     step4: {
       positionX: 0,
       positionY: 0,
@@ -41,6 +47,7 @@ function PostEvent() {
         positionX: merge.positionX,
         positionY: merge.positionY,
       },
+      linkCollection: [...merge.linkCollection],
     };
 
     //Removes keys that are not required by the API a
@@ -87,12 +94,8 @@ function PostEvent() {
     console.log(step);
   };
 
-  const handleOnStep3Finish = (step, formValues) => {
-    saveDataCaptured(step, formValues);
-    goToNextStep();
-  };
-
   const hadleCustomization = (step, formValues) => {
+    console.log("formvalues", formValues);
     saveDataCaptured(step, formValues);
   };
 
@@ -102,6 +105,7 @@ function PostEvent() {
 
   const previewData = {
     event: event,
+    previewNode: PreviewCard,
   };
 
   const getFormByStep = (step) => {
@@ -140,8 +144,8 @@ function PostEvent() {
         Form = (
           <Step3
             title="Enlaces de tu evento"
-            description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
-            onFinishSuccess={handleOnStep3Finish}
+            description="Agrega una colección de eventos para tu audiencia. Puedes incluir el enlace de registro del Open o de Masters por ejemplo"
+            onFinishSuccess={handleOnNext}
             step={3}
             onValuesChange={hadleCustomization}
             initialValues={capturedData.step3}

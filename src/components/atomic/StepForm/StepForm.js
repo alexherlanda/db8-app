@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Col, Row, Typography, Button } from "antd";
 import "./styles.css";
-import EventCard from "../../molecular/EventCard";
+import PropTypes from "prop-types";
 
 function StepForm(props) {
   const {
@@ -13,6 +13,7 @@ function StepForm(props) {
     step,
     onValuesChange,
     previewData,
+    previewNode: PreviewComponent,
     ...other
   } = props;
   const { Title } = Typography;
@@ -109,33 +110,22 @@ function StepForm(props) {
             marginBottom: "15px",
           }}
         >
-          <div
-            style={{
-              minHeight: "600px",
-              width: "98%",
-              background: "white",
-            }}
-          >
-            <div style={{ padding: "15px" }}>
-              <Title level={4}> Vista Previa </Title>
-              <p> Esta quedando fantastico </p>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                background: "lightgrey",
-                padding: 2,
-              }}
-            >
-              <EventCard event={previewData} style={{ width: "100%" }} />
-            </div>
-          </div>
+          <PreviewComponent
+            previewData={previewData}
+            previewConfig={{ step: step }}
+          />
         </Col>
       </Row>
     </Form>
   );
 }
+
+StepForm.propTypes = {
+  previewNode: PropTypes.node,
+};
+
+StepForm.defaultProps = {
+  previewNode: "DefaultPreviewNode",
+};
 
 export default StepForm;

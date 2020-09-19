@@ -18,6 +18,23 @@ function EventCard(props) {
     setShowLinkCollection(true);
   };
 
+  const getCoverStyle = (objectEvent, key, defaultValue) => {
+    let correspondingStyle;
+    if (objectEvent && objectEvent.coverStyle) {
+      correspondingStyle = objectEvent.coverStyle[key];
+    } else {
+      correspondingStyle = defaultValue;
+    }
+    return correspondingStyle;
+  };
+
+  const getBackgroundPosition = (objectEvent, unit = "px") => {
+    const x = getCoverStyle(objectEvent, "positionX", 0);
+    const y = getCoverStyle(objectEvent, "positionY", 0);
+    const position = `${x}${unit} ${y}${unit}`;
+    console.log("pos", position);
+    return position;
+  };
   return (
     <Card
       hoverable
@@ -28,8 +45,8 @@ function EventCard(props) {
           event && event.coverUrl ? event.coverUrl : undefined
         }')`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
-        ...style
+        backgroundPosition: getBackgroundPosition(event),
+        ...style,
       }}
       bodyStyle={{ padding: "10px" }}
     >
@@ -90,7 +107,13 @@ function EventCard(props) {
                     maskStyle={{ background: "rgba(0, 0, 0, 0.95)" }}
                     onCancel={() => setShowLinkCollection(false)}
                   >
-                    <LinkCollection />
+                    <LinkCollection
+                      linkCollection={
+                        event && event.linkCollection
+                          ? event.linkCollection
+                          : []
+                      }
+                    />
                   </Modal>
                   <Title
                     level={4}
@@ -101,7 +124,7 @@ function EventCard(props) {
                       overflowY: "hidden",
                     }}
                   >
-                    {event && event.shortName ? event.shortName : ''}
+                    {event && event.shortName ? event.shortName : ""}
                   </Title>
                   <div
                     style={{ color: "grey", fontSize: "11px" }}
@@ -139,7 +162,9 @@ function EventCard(props) {
             <Row style={{ display: "flex", justifyContent: "center" }}>
               <DateRange
                 locale={t("key-code")}
-                startDate={event && event.startDate ? event.startDate : "01-01-21"}
+                startDate={
+                  event && event.startDate ? event.startDate : "01-01-21"
+                }
                 endDate={event && event.endDate ? event.endDate : "01-02-21"}
               />
             </Row>

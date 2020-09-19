@@ -11,7 +11,10 @@ function PostEvent() {
     step1: {},
     step2: {},
     step3: {},
-    step4: {},
+    step4: {
+      positionX: 0,
+      positionY: 0,
+    },
   });
   const [event, setEvent] = useState({});
 
@@ -25,6 +28,7 @@ function PostEvent() {
     };
 
     //Adds and groups keys for request as defined in model an API
+
     const newEvent = {
       ...merge,
       countryCode: merge.country,
@@ -33,16 +37,20 @@ function PostEvent() {
         { key: "attendanceType", value: merge.attendanceType },
         { key: "formatType", text: merge.formatType },
       ],
+      coverStyle: {
+        positionX: merge.positionX,
+        positionY: merge.positionY,
+      },
     };
 
     //Removes keys that are not required by the API a
     delete newEvent["attendanceType"];
     delete newEvent["formatType"];
     delete newEvent["type"];
-
+    delete newEvent["positionX"];
+    delete newEvent["positionY"];
     //Saves the event for access
     setEvent(newEvent);
-    console.log("event", newEvent);
     //TODO: Send request
   }, [capturedData]);
 

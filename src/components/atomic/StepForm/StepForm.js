@@ -21,7 +21,6 @@ function StepForm(props) {
 
   /* Hanldes  when the user enters all the inputs correctly */
   const handleOnFinishSuccess = (values) => {
-    console.log("values", values);
     if (onFinishSuccess) {
       onFinishSuccess(values, step);
     }
@@ -46,7 +45,6 @@ function StepForm(props) {
   };
 
   const handleOnChange = (changedFields, allFields) => {
-    console.log("allfields", allFields);
     if (onValuesChange) onValuesChange(step, allFields, changedFields);
   };
 

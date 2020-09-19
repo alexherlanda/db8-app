@@ -32,16 +32,16 @@ function Step3(props) {
                   />
                   <Form.Item
                     {...field}
-                    name={[field.name, "first"]}
-                    fieldKey={[field.fieldKey, "first"]}
+                    name={[field.name, "label"]}
+                    fieldKey={[field.fieldKey, "label"]}
                     rules={[{ required: true, message: "Missing first name" }]}
                   >
                     <Input placeholder="Titulo del enlance" />
                   </Form.Item>
                   <Form.Item
                     {...field}
-                    name={[field.name, "last"]}
-                    fieldKey={[field.fieldKey, "last"]}
+                    name={[field.name, "link"]}
+                    fieldKey={[field.fieldKey, "link"]}
                     rules={[{ required: true, message: "Missing last name" }]}
                   >
                     <Input placeholder="URL" />

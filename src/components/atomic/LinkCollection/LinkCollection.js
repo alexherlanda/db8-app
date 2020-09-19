@@ -8,7 +8,7 @@ function LinkCollection(props) {
   const renderItem = (item) => {
     return (
       <List.Item>
-        <Button block target="_blank" href={item.link}>
+        <Button rel="noopener" block target="_blank" href={item.link}>
           {item.label}
         </Button>
       </List.Item>

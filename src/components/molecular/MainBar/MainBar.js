@@ -81,6 +81,7 @@ function MainBar(props) {
                     alignItems: 'center',
                     borderRadius: '50%',
                   }}
+                  rel="noopener"
                   href="https://forms.gle/vaknivGTW56PQ7Nx7"
                   type="primary"
                   icon={<PlusOutlined />}

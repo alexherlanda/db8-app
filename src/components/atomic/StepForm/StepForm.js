@@ -83,23 +83,6 @@ function StepForm(props) {
             <Title level={3}> {title} </Title>
             <p> {description} </p>
             {children}
-
-            <Row justify="center" gutter={8}>
-              <Col span={10}>
-                <Form.Item>
-                  <Button onClick={handleOnBack} block size="large">
-                    Regresar
-                  </Button>
-                </Form.Item>
-              </Col>
-              <Col span={10}>
-                <Form.Item>
-                  <Button htmlType="submit" block size="large" type="primary">
-                    Siguiente
-                  </Button>
-                </Form.Item>
-              </Col>
-            </Row>
           </div>
         </Col>
         <Col
@@ -107,13 +90,41 @@ function StepForm(props) {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginBottom: "15px",
+            marginBottom: "0px",
           }}
         >
           <PreviewComponent
             previewData={previewData}
             previewConfig={{ step: step }}
           />
+        </Col>
+      </Row>
+      <Row
+        style={{
+          width: "100%",
+          background: "lightgrey",
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          padding: "10px 20px",
+          height: "62px",
+        }}
+        justify="end"
+        gutter={8}
+      >
+        <Col>
+          <Form.Item>
+            <Button onClick={handleOnBack} block size="large">
+              Regresar
+            </Button>
+          </Form.Item>
+        </Col>
+        <Col>
+          <Form.Item>
+            <Button htmlType="submit" block size="large" type="primary">
+              Siguiente
+            </Button>
+          </Form.Item>
         </Col>
       </Row>
     </Form>

@@ -14,7 +14,7 @@ function PreviewCard(props) {
         background: "white",
       }}
     >
-      <div style={{ padding: "15px" }}>
+      <div style={{ padding: "15px 15px 0px 15px" }}>
         <Title level={4}> Vista Previa </Title>
         <p> Esta quedando fantastico </p>
       </div>

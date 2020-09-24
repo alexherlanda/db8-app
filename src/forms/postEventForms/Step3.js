@@ -10,7 +10,7 @@ function Step3(props) {
   return (
     <StepForm previewData={event} {...other}>
       <Col span={24}>
-        <Form.Item label="URL de información" name="convenorsCompleteName">
+        <Form.Item label="URL de información" name="infoLink">
           <Input />
         </Form.Item>
       </Col>

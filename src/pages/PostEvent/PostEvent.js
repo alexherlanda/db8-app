@@ -59,6 +59,7 @@ function PostEvent() {
     //Saves the event for access
     setEvent(newEvent);
     //TODO: Send request
+    console.log("newEvent", JSON.stringify(newEvent))
   }, [capturedData]);
 
   //This function saves the captured data of the user to the state

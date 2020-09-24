@@ -15,7 +15,7 @@
       ]
     },
     {
-    "login": "JulianC606",
+      "login": "JulianC606",
       "name": "JulianC606",
       "avatar_url": "https://avatars3.githubusercontent.com/u/51425345?v=4",
       "profile": "https://github.com/JulianC606",
@@ -29,7 +29,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/47148409?v=4",
       "profile": "https://github.com/adrianoduque97",
       "contributions": [
-        "code"
+        "code",
+        "review"
       ]
     }
   ],

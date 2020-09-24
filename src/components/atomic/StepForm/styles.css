@@ -1,0 +1,26 @@
+.middleRoot {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.previewFrom {
+  background-color: green !important;
+}
+
+.headerForm {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.postEventFormRow {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.form-button-section-container {
+  display: flex !important;
+  align-items: center;
+  margin-top: 15px;
+  background-color: red;
+}

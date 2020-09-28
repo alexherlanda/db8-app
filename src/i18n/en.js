@@ -7,7 +7,7 @@ const enTranslation = {
     'card-showMore': 'show more',
     'card-host': 'By',
     'card-button-knowMore': 'Know more',
-    'card-button-register': 'Attend',
+    'card-button-register': 'Join',
     'card-tag-typeTournament': 'Tournament',
     'card-tag-type-Worshop': 'Workshop',
     'card-tag-attendance-Face2Face': '?',

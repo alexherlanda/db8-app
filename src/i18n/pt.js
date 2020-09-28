@@ -7,7 +7,7 @@ const ptTranslation = {
     'card-showMore': 'mostre mais',
     'card-host': 'De',
     'card-button-knowMore': 'Saber mais',
-    'card-button-register': 'Inscreva-se',
+    'card-button-register': 'Participar',
     'card-tag-typeTournament': 'Torneio',
     'card-tag-type-Worshop': 'Formação',
     'card-tag-attendance-Face2Face': 'Presencial',

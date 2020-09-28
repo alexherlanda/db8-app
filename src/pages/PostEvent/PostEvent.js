@@ -96,7 +96,6 @@ function PostEvent() {
   };
 
   const hadleCustomization = (step, formValues) => {
-    console.log("formvalues", formValues);
     saveDataCaptured(step, formValues);
   };
 

@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { Button, Row, Col, Input } from 'antd';
-import LanguageSelector from '../../atomic/LanguageSelector';
-import { ArrowLeftOutlined, SearchOutlined, PlusOutlined } from '@ant-design/icons';
-import { connect } from 'react-redux';
-import { listEventsRequest } from '../../../redux/actions/eventsActions';
+import React, { useState } from "react";
+import { Button, Row, Col, Input } from "antd";
+import LanguageSelector from "../../atomic/LanguageSelector";
+import {
+  ArrowLeftOutlined,
+  SearchOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import { connect } from "react-redux";
+import { listEventsRequest } from "../../../redux/actions/eventsActions";
 
 function MainBar(props) {
   const { listEventsRequest: listEventsReq } = props;
@@ -19,7 +23,6 @@ function MainBar(props) {
   };
 
   const handleSearch = (value) => {
-    console.log(value);
     listEventsReq({ search: value, all: false });
   };
 
@@ -32,10 +35,10 @@ function MainBar(props) {
   return (
     <Row
       style={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        display: 'flex',
-        height: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+        height: "100%",
       }}
     >
       {isSearchCollapsed ? (
@@ -44,42 +47,45 @@ function MainBar(props) {
           <Col span={6} />
           <Col span={12}>
             <Row gutter={[16, 0]} justify="end">
+              {false && (
+                <Col
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    onClick={handleOpenSearch}
+                    type="text"
+                    size="large"
+                    icon={<SearchOutlined style={{ color: "white" }} />}
+                  />
+                </Col>
+              )}
+
               <Col
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Button
-                  onClick={handleOpenSearch}
-                  type="text"
-                  size="large"
-                  icon={<SearchOutlined style={{ color: 'white' }} />}
-                />
-              </Col>
-              <Col
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <LanguageSelector />
               </Col>
               <Col
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <Button
                   style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: '50%',
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "50%",
                   }}
                   rel="noopener"
                   href="https://forms.gle/vaknivGTW56PQ7Nx7"
@@ -101,19 +107,19 @@ function MainBar(props) {
             lg={6}
             xl={7}
             xxl={7}
-            style={{ display: 'flex', justifyContent: 'flex-end' }}
+            style={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Button
               size="large"
               onClick={handleCloseSearch}
               type="text"
-              icon={<ArrowLeftOutlined style={{ color: 'white' }} />}
+              icon={<ArrowLeftOutlined style={{ color: "white" }} />}
             />
           </Col>
           <Col xs={20} sm={20} md={16} lg={12} xl={10} xxl={10}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <Search
-                style={{ width: '95%' }}
+                style={{ width: "95%" }}
                 autoFocus
                 placeholder="Search by name or host"
                 onSearch={handleSearch}

@@ -7,7 +7,7 @@ const esTranslation = {
     'card-showMore': 'ver más',
     'card-host': 'De',
     'card-button-knowMore': 'Saber más',
-    'card-button-register': 'Registrarse',
+    'card-button-register': 'Participar',
     'card-tag-typeTournament': 'Torneo',
     'card-tag-type-Worshop': 'Taller',
     'card-tag-attendance-Face2Face': 'Presencial',

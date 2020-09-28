@@ -50,6 +50,7 @@ function StepForm(props) {
   };
 
   const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
+  const previewLaoyouts = { xs: 24, sm: 24, md: 11, lg: 7, xl: 7, xxl: 7 };
 
   //TODO: Refactor to get a preview element as a prop
   return (
@@ -86,7 +87,7 @@ function StepForm(props) {
           </div>
         </Col>
         <Col
-          {...middleLayouts}
+          {...previewLaoyouts}
           style={{
             display: "flex",
             justifyContent: "center",

@@ -1,17 +1,18 @@
-import React from 'react';
-import Icon from '@ant-design/icons';
-import PropTypes from 'prop-types';
+import React from "react";
+import Icon from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 //Start converting SVG into React components
-import { ReactComponent as MXa } from '../../../assets/countries/mx.svg';
-import { ReactComponent as PEa } from '../../../assets/countries/pe.svg';
-import { ReactComponent as COa } from '../../../assets/countries/co.svg';
-import { ReactComponent as ESa } from '../../../assets/countries/es.svg';
-import { ReactComponent as USa } from '../../../assets/countries/us.svg';
-import { ReactComponent as ECa } from '../../../assets/countries/ec.svg';
-import { ReactComponent as CLa } from '../../../assets/countries/cl.svg';
-import { ReactComponent as PAa } from '../../../assets/countries/pa.svg';
-import { ReactComponent as VEa } from '../../../assets/countries/ve.svg';
+import { ReactComponent as MXa } from "../../../assets/countries/mx.svg";
+import { ReactComponent as PEa } from "../../../assets/countries/pe.svg";
+import { ReactComponent as COa } from "../../../assets/countries/co.svg";
+import { ReactComponent as ESa } from "../../../assets/countries/es.svg";
+import { ReactComponent as USa } from "../../../assets/countries/us.svg";
+import { ReactComponent as ECa } from "../../../assets/countries/ec.svg";
+import { ReactComponent as CLa } from "../../../assets/countries/cl.svg";
+import { ReactComponent as PAa } from "../../../assets/countries/pa.svg";
+import { ReactComponent as VEa } from "../../../assets/countries/ve.svg";
+import { ReactComponent as BRa } from "../../../assets/countries/br.svg";
 //End converting SVG into React components
 
 function CountryIcon(props) {
@@ -29,47 +30,54 @@ function CountryIcon(props) {
   const PA = (props) => <Icon component={PAa} {...props} />; //Chile
   const VE = (props) => <Icon component={VEa} {...props} />; //Venezuela
 
+  //* Potguse Region
+  const BR = (props) => <Icon component={BRa} {...props} />; //Brasil
+
   //End  of converting icons into antdIcons
 
   let CIcon;
   switch (countryCode) {
-    case 'MX':
+    case "MX":
       CIcon = <MX />;
       break;
 
-    case 'PE':
+    case "PE":
       CIcon = <PE />;
       break;
 
-    case 'CO':
+    case "CO":
       CIcon = <CO />;
       break;
 
-    case 'ES':
+    case "ES":
       CIcon = <ES />;
       break;
 
-    case 'US':
+    case "US":
       CIcon = <US />;
       break;
 
-    case 'EC':
+    case "EC":
       CIcon = <EC />;
       break;
 
-    case 'CL':
+    case "CL":
       CIcon = <CL />;
       break;
 
-    case 'PA':
+    case "PA":
       CIcon = <PA />;
       break;
 
-    case 'VE':
+    case "VE":
       CIcon = <VE />;
       break;
 
-    case '-':
+    case "BR":
+      CIcon = <BR />;
+      break;
+
+    case "-":
       CIcon = null;
       break;
 
@@ -86,7 +94,7 @@ CountryIcon.propTypes = {
 };
 
 CountryIcon.defaultProps = {
-  countryCode: 'MX',
+  countryCode: "MX",
 };
 
 export default CountryIcon;

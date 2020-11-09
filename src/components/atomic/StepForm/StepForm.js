@@ -14,6 +14,7 @@ function StepForm(props) {
     onValuesChange,
     previewData,
     previewNode: PreviewComponent,
+    mainButtonIsLoading,
     ...other
   } = props;
   const { Title } = Typography;
@@ -122,7 +123,13 @@ function StepForm(props) {
         </Col>
         <Col>
           <Form.Item>
-            <Button htmlType="submit" block size="large" type="primary">
+            <Button
+              htmlType="submit"
+              block
+              size="large"
+              type="primary"
+              loading={mainButtonIsLoading}
+            >
               Siguiente
             </Button>
           </Form.Item>

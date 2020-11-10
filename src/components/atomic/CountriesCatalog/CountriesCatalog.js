@@ -14,6 +14,7 @@ function CountriesCatalog(props) {
     { value: "EC", label: "Ecuador" },
     { value: "CL", label: "Panamá" },
     { value: "PA", label: "Venezuela" },
+    { value: "BR", label: "Brasil" },
   ];
 
   const renderOptions = (options) => {

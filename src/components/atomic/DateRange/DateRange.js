@@ -9,9 +9,13 @@ function DateRange(props) {
   const { startDate, endDate, locale } = props;
 
   const formatDate = (ISOdate, formatPattern) => {
-    const secureDate = ISOdate.slice(0, 10);
     let formatedString;
-    formatedString = moment(secureDate).locale(locale).format(formatPattern);
+    try {
+      const secureDate = ISOdate.slice(0, 10);
+      formatedString = moment(secureDate).locale(locale).format(formatPattern);
+    } catch (error) {
+      formatedString = moment(ISOdate).locale(locale).format(formatPattern);
+    }
     return formatedString;
   };
 

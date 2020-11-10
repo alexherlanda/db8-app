@@ -14,6 +14,7 @@ function StepForm(props) {
     onValuesChange,
     previewData,
     previewNode: PreviewComponent,
+    mainButtonIsLoading,
     ...other
   } = props;
   const { Title } = Typography;
@@ -50,6 +51,7 @@ function StepForm(props) {
   };
 
   const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
+  const previewLaoyouts = { xs: 24, sm: 24, md: 11, lg: 7, xl: 7, xxl: 7 };
 
   //TODO: Refactor to get a preview element as a prop
   return (
@@ -86,7 +88,7 @@ function StepForm(props) {
           </div>
         </Col>
         <Col
-          {...middleLayouts}
+          {...previewLaoyouts}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -121,7 +123,13 @@ function StepForm(props) {
         </Col>
         <Col>
           <Form.Item>
-            <Button htmlType="submit" block size="large" type="primary">
+            <Button
+              htmlType="submit"
+              block
+              size="large"
+              type="primary"
+              loading={mainButtonIsLoading}
+            >
               Siguiente
             </Button>
           </Form.Item>

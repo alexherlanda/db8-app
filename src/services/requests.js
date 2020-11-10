@@ -55,7 +55,7 @@ const requestHandler = (request) => {
     }
   } catch (error) {
     delete request.headers.common['Authorization'];
-    console.log(error);
+    console.error(error);
   }
   return request;
 };

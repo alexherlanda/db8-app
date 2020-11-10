@@ -10,8 +10,11 @@ import {
 import Steps from "../../components/atomic/Steps";
 import { scroller } from "react-scroll";
 import "./styles.css";
+import { connect } from "react-redux";
+import { postEventsRequest } from "../../redux/actions/eventsActions";
 
-function PostEvent() {
+function PostEvent(props) {
+  const { postEventsRequest: postEventReq, isPosting } = props;
   const [activeStep, setActiveStep] = useState(1);
   const [capturedData, setCapturedData] = useState({
     step1: {},
@@ -58,8 +61,6 @@ function PostEvent() {
     delete newEvent["positionY"];
     //Saves the event for access
     setEvent(newEvent);
-    //TODO: Send request
-    console.log("newEvent", JSON.stringify(newEvent))
   }, [capturedData]);
 
   //This function saves the captured data of the user to the state
@@ -91,12 +92,9 @@ function PostEvent() {
     }
   };
 
-  const handleOnStepClick = (step) => {
-    console.log(step);
-  };
+  const handleOnStepClick = (step) => {};
 
   const hadleCustomization = (step, formValues) => {
-    console.log("formvalues", formValues);
     saveDataCaptured(step, formValues);
   };
 
@@ -107,6 +105,10 @@ function PostEvent() {
   const previewData = {
     event: event,
     previewNode: PreviewCard,
+  };
+
+  const postEvent = () => {
+    postEventReq({ event: event });
   };
 
   const getFormByStep = (step) => {
@@ -165,6 +167,8 @@ function PostEvent() {
             event={event}
             onValuesChange={hadleCustomization}
             initialValues={capturedData.step4}
+            onFinish={postEvent}
+            mainButtonIsLoading={isPosting}
             {...formCommonProps}
             {...previewData}
           />
@@ -192,4 +196,10 @@ function PostEvent() {
   );
 }
 
-export default PostEvent;
+function mapStateToProps(state) {
+  return {
+    isPosting: state?.events?.postingEvent?.isPosting,
+  };
+}
+
+export default connect(mapStateToProps, { postEventsRequest })(PostEvent);

@@ -28,10 +28,10 @@ function EventCard(props) {
     return correspondingStyle;
   };
 
-  const getBackgroundPosition = (objectEvent, unit = "px") => {
+  const getBackgroundPosition = (objectEvent, unitX="", unitY = "px") => {
     const x = getCoverStyle(objectEvent, "positionX", 0);
     const y = getCoverStyle(objectEvent, "positionY", 0);
-    const position = `${x}${unit} ${y}${unit}`;
+    const position = `${x}${unitX} ${y}${unitY}`;
     return position;
   };
   return (

@@ -10,7 +10,16 @@ function Step3(props) {
   return (
     <StepForm previewData={event} {...other}>
       <Col span={24}>
-        <Form.Item label="URL de información" name="infoLink">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica un enlace de información del evento",
+            },
+          ]}
+          label="URL de información"
+          name="infoLink"
+        >
           <Input />
         </Form.Item>
       </Col>
@@ -34,7 +43,12 @@ function Step3(props) {
                     {...field}
                     name={[field.name, "label"]}
                     fieldKey={[field.fieldKey, "label"]}
-                    rules={[{ required: true, message: "Missing first name" }]}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Por favor indica el titulo del enlace",
+                      },
+                    ]}
                   >
                     <Input placeholder="Titulo del enlance" />
                   </Form.Item>
@@ -42,7 +56,12 @@ function Step3(props) {
                     {...field}
                     name={[field.name, "link"]}
                     fieldKey={[field.fieldKey, "link"]}
-                    rules={[{ required: true, message: "Missing last name" }]}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Por favor proporciona la URL del enlace",
+                      },
+                    ]}
                   >
                     <Input placeholder="URL" />
                   </Form.Item>

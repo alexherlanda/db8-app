@@ -15,6 +15,8 @@ function StepForm(props) {
     previewData,
     previewNode: PreviewComponent,
     mainButtonIsLoading,
+    mainButtonLabel,
+    mainButtonIsDisabled,
     ...other
   } = props;
   const { Title } = Typography;
@@ -53,7 +55,7 @@ function StepForm(props) {
   const middleLayouts = { xs: 24, sm: 24, md: 11, lg: 11, xl: 11, xxl: 12 };
   const previewLaoyouts = { xs: 24, sm: 24, md: 11, lg: 7, xl: 7, xxl: 7 };
 
-  //TODO: Refactor to get a preview element as a prop
+  //TODO: Refactor to get a  as a prop <PreviewComponent/> as a prop
   return (
     <Form
       form={form}
@@ -124,13 +126,14 @@ function StepForm(props) {
         <Col>
           <Form.Item>
             <Button
+              disabled={mainButtonIsDisabled}
               htmlType="submit"
               block
               size="large"
               type="primary"
               loading={mainButtonIsLoading}
             >
-              Siguiente
+              {mainButtonLabel}
             </Button>
           </Form.Item>
         </Col>
@@ -141,10 +144,12 @@ function StepForm(props) {
 
 StepForm.propTypes = {
   previewNode: PropTypes.node,
+  mainButtonLabel: PropTypes.string,
 };
 
 StepForm.defaultProps = {
   previewNode: "DefaultPreviewNode",
+  mainButtonLabel: "Continuar",
 };
 
 export default StepForm;

@@ -21,6 +21,8 @@ function EventsPostForm(props) {
     { label: "BP", value: "BP" },
     { label: "WUSDC", value: "WSDC" },
     { label: "Karl Popper", value: "Karl Popper" },
+    { label: "NP", value: "NP" },
+    { label: "Public Forum", value: "Public Forum" },
   ];
 
   const languageOptions = [
@@ -29,8 +31,6 @@ function EventsPostForm(props) {
     { label: "PT", value: 2 },
   ];
 
-  
-
   const optionGrupCommonProps = {
     size: "big",
     optionType: "button",
@@ -38,15 +38,33 @@ function EventsPostForm(props) {
   };
 
   return (
-    <StepForm  previewData={event} {...other}>
+    <StepForm previewData={event} {...other}>
       <Col span={24}>
-        <Form.Item label="Tipo de evento" name="type">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica el tipo del evento",
+            },
+          ]}
+          label="Tipo de evento"
+          name="type"
+        >
           <Radio.Group options={eventTypeOptions} {...optionGrupCommonProps} />
         </Form.Item>
       </Col>
 
       <Col span={24}>
-        <Form.Item label="Tipo de asistencia" name="attendanceType">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica el tipo de asistencia del evento",
+            },
+          ]}
+          label="Tipo de asistencia"
+          name="attendanceType"
+        >
           <Radio.Group
             options={attendanceTypeOptions}
             {...optionGrupCommonProps}
@@ -55,19 +73,46 @@ function EventsPostForm(props) {
       </Col>
 
       <Col span={24}>
-        <Form.Item label="Formato del evento" name="formatType">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica el formato del evento",
+            },
+          ]}
+          label="Formato del evento"
+          name="formatType"
+        >
           <Radio.Group options={formatTypeOptions} {...optionGrupCommonProps} />
         </Form.Item>
       </Col>
 
       <Col span={24}>
-        <Form.Item label="Idioma principal del evento" name="language">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica el idioma del evento",
+            },
+          ]}
+          label="Idioma principal del evento"
+          name="language"
+        >
           <Radio.Group options={languageOptions} {...optionGrupCommonProps} />
         </Form.Item>
       </Col>
 
       <Col span={24}>
-        <Form.Item label="País" name="country">
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: "Por favor indica el país del evento",
+            },
+          ]}
+          label="País"
+          name="country"
+        >
           <CountriesCatalog />
         </Form.Item>
       </Col>

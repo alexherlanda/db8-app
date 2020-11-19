@@ -8,7 +8,6 @@ import {
   listEventsFail,
 } from "../redux/actions/eventsActions";
 import { listEvents, postEvent } from "../services/events";
-import { notification } from "antd";
 
 function* listEventsRequestAsyncOrchestrator(action) {
   const { payload } = action;
@@ -27,15 +26,12 @@ function* listEventsRequestAsyncOrchestrator(action) {
 
 function* postEventRequestOrchestrator(action) {
   const { payload } = action;
-  const { event } = payload;
+  const { event, onSuccess } = payload;
   try {
     const response = yield call(postEvent, event);
     if (typeof response !== "undefined" && response.status === 200) {
       yield put(postEventsSuccess(response.data));
-      notification.success({
-        message: `El evento se registro exitosamente con el id ${response?.data?._id}`,
-        description: ":D",
-      });
+      if (onSuccess) onSuccess();
     } else {
       yield put(postEventsFail());
     }

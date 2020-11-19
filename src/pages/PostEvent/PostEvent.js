@@ -12,10 +12,14 @@ import { scroller } from "react-scroll";
 import "./styles.css";
 import { connect } from "react-redux";
 import { postEventsRequest } from "../../redux/actions/eventsActions";
+import { useHistory } from "react-router-dom";
 
 function PostEvent(props) {
   const { postEventsRequest: postEventReq, isPosting } = props;
+  const { push } = useHistory();
+
   const [activeStep, setActiveStep] = useState(1);
+
   const [capturedData, setCapturedData] = useState({
     step1: {},
     step2: {},
@@ -37,20 +41,19 @@ function PostEvent(props) {
     };
 
     //Adds and groups keys for request as defined in model an API
-
     const newEvent = {
       ...merge,
       countryCode: merge.country,
       tags: [
-        { key: "type", value: merge.type },
-        { key: "attendanceType", value: merge.attendanceType },
-        { key: "formatType", text: merge.formatType },
+        { key: "type", value: merge?.type },
+        { key: "attendanceType", value: merge?.attendanceType },
+        { key: "formatType", text: merge?.formatType },
       ],
       coverStyle: {
-        positionX: merge.positionX,
-        positionY: merge.positionY,
+        positionX: merge?.positionX,
+        positionY: merge?.positionY,
       },
-      linkCollection: [...merge.linkCollection],
+      linkCollection: [...merge?.linkCollection],
     };
 
     //Removes keys that are not required by the API a
@@ -108,7 +111,10 @@ function PostEvent(props) {
   };
 
   const postEvent = () => {
-    postEventReq({ event: event });
+    const onSuccess = () => {
+      push("/events/post/sucess");
+    };
+    postEventReq({ event: event, onSuccess: onSuccess });
   };
 
   const getFormByStep = (step) => {
@@ -118,7 +124,7 @@ function PostEvent(props) {
         Form = (
           <Step1
             title="Clasificación de tu evento"
-            description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
+            description="Proporciona algunas categorías que ayudaran a la gente a entender tu evento"
             onFinishSuccess={handleOnNext}
             step={1}
             initialValues={capturedData.step1}
@@ -132,7 +138,7 @@ function PostEvent(props) {
         Form = (
           <Step2
             title="Detalles de tu evento"
-            description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
+            description="Proporciona la información más importante de tú evento para que todo el mundo pueda asistir"
             onFinishSuccess={handleOnNext}
             step={2}
             onValuesChange={hadleCustomization}
@@ -147,7 +153,7 @@ function PostEvent(props) {
         Form = (
           <Step3
             title="Enlaces de tu evento"
-            description="Agrega una colección de eventos para tu audiencia. Puedes incluir el enlace de registro del Open o de Masters por ejemplo"
+            description="Agrega una colección de enlaces para tú audiencia. Debes agregar un enlace para obtener más información de tu evento pero puedes agregar más enlaces por ejemplo de tu convocatoria o la plataforma de inscripción."
             onFinishSuccess={handleOnNext}
             step={3}
             onValuesChange={hadleCustomization}
@@ -161,14 +167,15 @@ function PostEvent(props) {
       case 4:
         Form = (
           <Step4
-            title="Personaliza tu evento"
-            description="Ayuda a tu audiencia a llegar a tu evento proporcionado algunas clasificacioes de tu evento como formato o idioma"
+            title="Decoración de tu evento"
+            description="Agrega un detalle que hará que tu evento se vea genial. Copia y pega la dirección de una imagen que represente tu evento y personaliza tu imagen."
             step={4}
             event={event}
             onValuesChange={hadleCustomization}
             initialValues={capturedData.step4}
             onFinish={postEvent}
             mainButtonIsLoading={isPosting}
+            mainButtonLabel="Registrar"
             {...formCommonProps}
             {...previewData}
           />

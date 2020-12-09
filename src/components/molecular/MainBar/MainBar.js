@@ -47,22 +47,20 @@ function MainBar(props) {
           <Col span={6} />
           <Col span={12}>
             <Row gutter={[16, 0]} justify="end">
-              {false && (
-                <Col
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Button
-                    onClick={handleOpenSearch}
-                    type="text"
-                    size="large"
-                    icon={<SearchOutlined style={{ color: "white" }} />}
-                  />
-                </Col>
-              )}
+              <Col
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Button
+                  onClick={handleOpenSearch}
+                  type="text"
+                  size="large"
+                  icon={<SearchOutlined style={{ color: "white" }} />}
+                />
+              </Col>
 
               <Col
                 style={{

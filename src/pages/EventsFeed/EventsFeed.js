@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Card, Col, List } from "antd";
 import { connect } from "react-redux";
 import { listEventsRequest } from "../../redux/actions/eventsActions";
-import EventCard from '../../components/molecular/EventCard'
+import EventCard from "../../components/molecular/EventCard";
+import FiltersDrawer from "../../components/molecular/FiltersDrawer";
 
 import { useTranslation } from "react-i18next";
 
@@ -10,13 +11,23 @@ function EventsFeed(props) {
   const { listEventsRequest: listEventsReq, events } = props;
   const { t } = useTranslation();
 
+  const [filtersAreVisible, setFiltersAreVisible] = useState(true);
+
+  const closeFilers = () => {
+    setFiltersAreVisible(false);
+  };
+
   useEffect(() => {
     listEventsReq();
   }, [listEventsReq]);
 
-
   return (
     <>
+      <FiltersDrawer
+        visible={filtersAreVisible}
+        onClose={closeFilers}
+        onFinish={closeFilers}
+      />
       <Row>
         <Col span={24}>
           <Card

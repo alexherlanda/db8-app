@@ -12,12 +12,11 @@ function CountriesCatalog(props) {
     { value: "ES", label: "España" },
     { value: "US", label: "Estados Unidos de América" },
     { value: "EC", label: "Ecuador" },
-    { value: "CL", label: "Panamá" },
-    { value: "PA", label: "Venezuela" },
+    { value: "PA", label: "Panamá" },
+    { value: "VE", label: "Venezuela" },
     { value: "BR", label: "Brasil" },
     { value: "CL", label: "Chile" },
   ];
-  
 
   const renderOptions = (options) => {
     return options.map((option) => {

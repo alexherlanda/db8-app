@@ -61,7 +61,7 @@ function EventCard(props) {
       <Row
         style={{
           marginTop: "33%",
-        }}
+        }}                                                                                                                                      
       >
         <Col span={24}>
           <Card
